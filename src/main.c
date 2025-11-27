@@ -1,32 +1,21 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include <LiquidCrystal_I2C.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/portmacro.h"
 #include "scd41.h"
+#include "screen.h"
+#include "motor.h"
 
+
+//macros
 #define DISPLAY_BUTTON 10
 
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 2
 #endif
 
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-static const uint8_t motorPins[4] = {6, 7, 8, 9};
-
-static const uint8_t motorSeq[8][4] = {
-  {1,0,0,0},
-  {1,1,0,0},
-  {0,1,0,0},
-  {0,1,1,0},
-  {0,0,1,0},
-  {0,0,1,1},
-  {0,0,0,1},
-  {1,0,0,1}
-};
-
-static uint8_t stepIndex = 0;
+static const uint8_t motorPins[4] = {MOTOR_PIN1, MOTOR_PIN2, MOTOR_PIN3, MOTOR_PIN4};
 
 bool motorPower = true;
 static bool lastButtonState = HIGH;
@@ -38,48 +27,8 @@ static scd41_reading_t latestReading = {0};
 static bool haveReading = false;
 static portMUX_TYPE readingMux = portMUX_INITIALIZER_UNLOCKED;
 
-void writeCO2(float reading) {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("CO2 PPM: ");
-  lcd.setCursor(10, 0);
-  lcd.print(reading, 0);
-}
-
-void writeHumidity(float reading) {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Humidity: ");
-  lcd.setCursor(11, 0);
-  lcd.print(reading, 0);
-}
-
-void writeTemperature(float reading) {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Temp: ");
-  lcd.setCursor(7, 0);
-  lcd.print(reading, 0);
-}
-
 void changeDisplay(){
   page = (page + 1) % 3;
-}
-
-// Now: one *step* per call when power == true.
-// The 5 ms timing is handled by the FreeRTOS task.
-void motorControl(bool power) {
-  if (power) {
-    stepIndex = (stepIndex + 1) % 8;
-    for (uint8_t i = 0; i < 4; ++i) {
-      digitalWrite(motorPins[i], motorSeq[stepIndex][i] ? HIGH : LOW);
-    }
-  } else {
-    // turn all coils off to disable motor
-    for (uint8_t i = 0; i < 4; ++i) {
-      digitalWrite(motorPins[i], LOW);
-    }
-  }
 }
 
 
@@ -96,17 +45,13 @@ void writeDisplay(void *pvParameters) {
     portEXIT_CRITICAL(&readingMux);
 
     if (!ready) {
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("Waiting for");
-      lcd.setCursor(0, 1);
-      lcd.print("sensor...");
+      screen_show_waiting();
     } else if (page == 0) {
-      writeCO2(readingCopy.co2_ppm);
+      screen_show_co2(readingCopy.co2_ppm);
     } else if (page == 1) {
-      writeTemperature(readingCopy.temperature_c);
+      screen_show_temperature(readingCopy.temperature_c);
     } else {
-      writeHumidity(readingCopy.humidity_rh);
+      screen_show_humidity(readingCopy.humidity_rh);
     }
     vTaskDelayUntil(&lastWakeTime, period);
   }
@@ -155,7 +100,7 @@ void motorTask(void *pvParameters) {
   TickType_t lastWakeTime = xTaskGetTickCount();
 
   for (;;) {
-    motorControl(motorPower); // call every 5 ms
+    motor_step(motorPower); // call every 5 ms
     vTaskDelayUntil(&lastWakeTime, period);
   }
 }
@@ -172,15 +117,8 @@ void setup() {
     Serial.println("Failed to start SCD41 periodic measurements");
   }
 
-  lcd.init();
-  lcd.backlight();
-  delay(2);
-  lcd.clear();
-
-  for (uint8_t i = 0; i < 4; ++i) {
-    pinMode(motorPins[i], OUTPUT);
-    digitalWrite(motorPins[i], LOW);
-  }
+  screen_init();
+  motor_init(motorPins);
 
   // Create sensor task (10 ms)
   xTaskCreatePinnedToCore(
