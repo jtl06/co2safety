@@ -2,7 +2,6 @@
 #include <Wire.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/portmacro.h"
 #include "scd41.h"
 #include "screen.h"
 #include "motor.h"
@@ -22,41 +21,6 @@ static bool lastButtonState = HIGH;
 static unsigned long lastChangeTime = 0;
 const unsigned long debounceMs = 30;
 
-int page = 0;
-static scd41_reading_t latestReading = {0};
-static bool haveReading = false;
-static portMUX_TYPE readingMux = portMUX_INITIALIZER_UNLOCKED;
-
-void changeDisplay(){
-  page = (page + 1) % 3;
-}
-
-
-void writeDisplay(void *pvParameters) {
-  const TickType_t period = pdMS_TO_TICKS(1000);  // 1 s
-  TickType_t lastWakeTime = xTaskGetTickCount();
-
-  for (;;) {
-    scd41_reading_t readingCopy;
-    bool ready;
-    portENTER_CRITICAL(&readingMux);
-    readingCopy = latestReading;
-    ready = haveReading;
-    portEXIT_CRITICAL(&readingMux);
-
-    if (!ready) {
-      screen_show_waiting();
-    } else if (page == 0) {
-      screen_show_co2(readingCopy.co2_ppm);
-    } else if (page == 1) {
-      screen_show_temperature(readingCopy.temperature_c);
-    } else {
-      screen_show_humidity(readingCopy.humidity_rh);
-    }
-    vTaskDelayUntil(&lastWakeTime, period);
-  }
-}
-
 // Sensor task: runs every 10 ms
 void sensorTask(void *pvParameters) {
   const TickType_t period = pdMS_TO_TICKS(10);  // 10 ms
@@ -74,7 +38,7 @@ void sensorTask(void *pvParameters) {
       lastButtonState = rawState;
 
       if (rawState == LOW) {
-        changeDisplay();
+        screen_next_page();
       }
     }
 
@@ -82,10 +46,7 @@ void sensorTask(void *pvParameters) {
     if ((nowTicks - lastReadTime) >= readInterval) {
       scd41_reading_t reading;
       if (SCD41_read(&reading)) {
-        portENTER_CRITICAL(&readingMux);
-        latestReading = reading;
-        haveReading = true;
-        portEXIT_CRITICAL(&readingMux);
+        screen_set_reading(&reading);
       }
       lastReadTime = nowTicks;
     }
@@ -133,7 +94,7 @@ void setup() {
 
   // Create sensor task (10 ms)
   xTaskCreatePinnedToCore(
-    writeDisplay,
+    screen_task,
     "displayTask",
     4096,
     NULL,
