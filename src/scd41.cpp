@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "scd41.h"
+#include "../inc/scd41.h"
 
 //address
 #define SCD41_I2C_ADDR 0x62

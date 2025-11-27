@@ -1,20 +1,13 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "./inc/scd41.h"        // your existing SCD41 driver
-#include "./inc/sd_logger.h"    // the new SD helper
+#include "./inc/scd41.h"
+#include "./inc/sd_logger.h"
 
 // --------- Pinout (ESP32-S3) ----------
 #define CO2_SDA 6
 #define CO2_SCL 5
 
-// Same struct as before
-typedef struct {
-  float co2_ppm;
-  float temperature_c;
-  float humidity_rh;
-} scd41_reading_t;
-
-// Forward declarations from your SCD41 driver
+// Forward declarations from SCD41 driver
 bool SCD41_init(void);
 bool SCD41_read(scd41_reading_t *out);
 
@@ -48,7 +41,7 @@ void setup() {
 
 void loop() {
   static uint32_t lastCheck = 0;
-  const uint32_t interval_ms = 1000; // ask once per second
+  const uint32_t interval_ms = 5000; // ask once per second
 
   if (millis() - lastCheck >= interval_ms) {
     lastCheck = millis();

@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "motor.h"
+#include "../inc/motor.h"
 
 static uint8_t motorPinsLocal[4] = {0};
 static uint8_t stepIndex = 0;

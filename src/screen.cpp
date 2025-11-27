@@ -2,7 +2,7 @@
 #include <LiquidCrystal_I2C.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/portmacro.h"
-#include "screen.h"
+#include "../inc/screen.h"
 
 static LiquidCrystal_I2C lcd(0x27, 16, 2);
 
