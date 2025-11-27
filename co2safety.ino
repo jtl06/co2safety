@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "scd41.h"        // your existing SCD41 driver
-#include "sd_logger.h"    // the new SD helper
+#include "./inc/scd41.h"        // your existing SCD41 driver
+#include "./inc/sd_logger.h"    // the new SD helper
 
 // --------- Pinout (ESP32-S3) ----------
 #define CO2_SDA 6
