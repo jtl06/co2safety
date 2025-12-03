@@ -1,19 +1,4 @@
 var searchData=
 [
-  ['scd41_5finit_0',['SCD41_init',['../co2safety_8ino.html#a4ebab26cc15a6789265f1375940c9564',1,'SCD41_init(void):&#160;scd41.cpp'],['../scd41_8cpp.html#a4ebab26cc15a6789265f1375940c9564',1,'SCD41_init(void):&#160;scd41.cpp'],['../scd41_8h.html#a4ebab26cc15a6789265f1375940c9564',1,'SCD41_init(void):&#160;scd41.cpp']]],
-  ['scd41_5fread_1',['SCD41_read',['../co2safety_8ino.html#acfc267f5b9d040951e040cfb5ae3ee1b',1,'SCD41_read(scd41_reading_t *out):&#160;scd41.cpp'],['../scd41_8cpp.html#acfc267f5b9d040951e040cfb5ae3ee1b',1,'SCD41_read(scd41_reading_t *out):&#160;scd41.cpp'],['../scd41_8h.html#acfc267f5b9d040951e040cfb5ae3ee1b',1,'SCD41_read(scd41_reading_t *out):&#160;scd41.cpp']]],
-  ['screen_5finit_2',['screen_init',['../screen_8cpp.html#a0ab3c3f5b3d72f012afd419afd4f9bcd',1,'screen_init(uint32_t *sd_enable):&#160;screen.cpp'],['../screen_8h.html#a32412d579b165f4e495c83eb398bc842',1,'screen_init(bool *sd_enable):&#160;screen.h']]],
-  ['screen_5fnext_5fpage_3',['screen_next_page',['../screen_8cpp.html#a87bbfeba17322ef0fdc0a543667ff6b6',1,'screen_next_page(void):&#160;screen.cpp'],['../screen_8h.html#a87bbfeba17322ef0fdc0a543667ff6b6',1,'screen_next_page(void):&#160;screen.cpp']]],
-  ['screen_5fsd_5fline_4',['screen_sd_line',['../screen_8cpp.html#a4f1b2d6cfdacbbf0146ffd579ae120c7',1,'screen.cpp']]],
-  ['screen_5fset_5freading_5',['screen_set_reading',['../screen_8cpp.html#afa5e51f64af4ec9432c85e72815474a8',1,'screen_set_reading(const scd41_reading_t *reading):&#160;screen.cpp'],['../screen_8h.html#afa5e51f64af4ec9432c85e72815474a8',1,'screen_set_reading(const scd41_reading_t *reading):&#160;screen.cpp']]],
-  ['screen_5fshow_5fco2_6',['screen_show_co2',['../screen_8cpp.html#ac71e4113d70652558c80aaa67390125b',1,'screen_show_co2(float reading):&#160;screen.cpp'],['../screen_8h.html#ac71e4113d70652558c80aaa67390125b',1,'screen_show_co2(float reading):&#160;screen.cpp']]],
-  ['screen_5fshow_5fhumidity_7',['screen_show_humidity',['../screen_8cpp.html#aeac68b2ad703afef293c95d0360785fd',1,'screen_show_humidity(float reading):&#160;screen.cpp'],['../screen_8h.html#aeac68b2ad703afef293c95d0360785fd',1,'screen_show_humidity(float reading):&#160;screen.cpp']]],
-  ['screen_5fshow_5ftemperature_8',['screen_show_temperature',['../screen_8cpp.html#a004af96795ae3921cbeaccc56648e7cb',1,'screen_show_temperature(float reading):&#160;screen.cpp'],['../screen_8h.html#a004af96795ae3921cbeaccc56648e7cb',1,'screen_show_temperature(float reading):&#160;screen.cpp']]],
-  ['screen_5fshow_5fwaiting_9',['screen_show_waiting',['../screen_8cpp.html#a0a54db6b1d6ae98420c3df62a10db26d',1,'screen_show_waiting(void):&#160;screen.cpp'],['../screen_8h.html#a0a54db6b1d6ae98420c3df62a10db26d',1,'screen_show_waiting(void):&#160;screen.cpp']]],
-  ['screen_5ftask_10',['screen_task',['../screen_8cpp.html#ac11caa69861843d625e8411350b52361',1,'screen_task(void *pvParameters):&#160;screen.cpp'],['../screen_8h.html#ac11caa69861843d625e8411350b52361',1,'screen_task(void *pvParameters):&#160;screen.cpp']]],
-  ['sd_5fbutton_5ftask_11',['sd_button_task',['../co2safety_8ino.html#af75a3f0e294ac7a28bbdef5dd32f463f',1,'co2safety.ino']]],
-  ['sdlog_5fappend_12',['SDLOG_append',['../sd__logger_8cpp.html#a28d63bf0a6b6bb1ab14322e3aa0b4e20',1,'SDLOG_append(uint32_t timestamp_ms, float co2_ppm, float temperature_c, float humidity_rh):&#160;sd_logger.cpp'],['../sd__logger_8h.html#a28d63bf0a6b6bb1ab14322e3aa0b4e20',1,'SDLOG_append(uint32_t timestamp_ms, float co2_ppm, float temperature_c, float humidity_rh):&#160;sd_logger.cpp']]],
-  ['sdlog_5finit_13',['SDLOG_init',['../sd__logger_8cpp.html#a1c403ade4a0b09a7433fbe22a5d07f61',1,'SDLOG_init(void):&#160;sd_logger.cpp'],['../sd__logger_8h.html#a1c403ade4a0b09a7433fbe22a5d07f61',1,'SDLOG_init(void):&#160;sd_logger.cpp']]],
-  ['sensor_5ftask_14',['sensor_task',['../co2safety_8ino.html#adc13c768c3882c534ba57bad636776ce',1,'co2safety.ino']]],
-  ['setup_15',['setup',['../co2safety_8ino.html#a4fc01d736fe50cf5b977f755b675f11d',1,'co2safety.ino']]]
+  ['next_5fbutton_5ftask_0',['next_button_task',['../co2safety_8ino.html#a9db9b30de449432469465c4ea9315d12',1,'co2safety.ino']]]
 ];

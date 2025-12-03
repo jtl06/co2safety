@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: Globals</title>
+<title>My Project: inputs.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('globals_defs.html','',''); });
+$(function(){initNavTree('inputs_8h.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -87,31 +87,67 @@ $(function(){initNavTree('globals_defs.html','',''); });
 </div>
 </div>
 
+<div class="header">
+  <div class="headertitle"><div class="title">inputs.h File Reference</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all macros with links to the files they belong to:</div><ul>
-<li>BAUD_RATE&#160;:&#160;<a class="el" href="co2safety_8ino.html#ad4455691936f92fdd6c37566fc58ba1f">co2safety.ino</a></li>
-<li>CMD_GET_DATA_READY_STATUS&#160;:&#160;<a class="el" href="scd41_8cpp.html#ab27f867aa90019401665eab2c5a25615">scd41.cpp</a></li>
-<li>CMD_READ_MEASUREMENT&#160;:&#160;<a class="el" href="scd41_8cpp.html#a407000be8cd567daeb6a874253516ad9">scd41.cpp</a></li>
-<li>CMD_START_PERIODIC_MEAS&#160;:&#160;<a class="el" href="scd41_8cpp.html#abd2cd0041c0deb6f3f8f6a685b7e3214">scd41.cpp</a></li>
-<li>CMD_STOP_PERIODIC_MEAS&#160;:&#160;<a class="el" href="scd41_8cpp.html#a515ea6f1cf60dd9317b51b06fdd1a3bf">scd41.cpp</a></li>
-<li>CRC8_INIT&#160;:&#160;<a class="el" href="scd41_8cpp.html#a1a748fe27fb199e3a200974254f13c7d">scd41.cpp</a></li>
-<li>CRC8_POLYNOMIAL&#160;:&#160;<a class="el" href="scd41_8cpp.html#a26d68e90012b14c430d91affea2c1d32">scd41.cpp</a></li>
-<li>I2C_SCL&#160;:&#160;<a class="el" href="co2safety_8ino.html#a212ca328a6409c98f8c3dfbbe1ba561d">co2safety.ino</a></li>
-<li>I2C_SDA&#160;:&#160;<a class="el" href="co2safety_8ino.html#a18aefd12ad84d4c33dc97923cb821e47">co2safety.ino</a></li>
-<li>NEXT_BUTTON_PIN&#160;:&#160;<a class="el" href="inputs_8cpp.html#aa446ef1837b99fa1d9ae076c7f477c54">inputs.cpp</a></li>
-<li>SCD41_I2C_ADDR&#160;:&#160;<a class="el" href="scd41_8cpp.html#a2ebd509cac3a17cea08322e44dc02e48">scd41.cpp</a></li>
-<li>SD_BUTTON_PIN&#160;:&#160;<a class="el" href="inputs_8cpp.html#a93510422c658d1276b632d3303ee863d">inputs.cpp</a></li>
-<li>SD_CS&#160;:&#160;<a class="el" href="sd__logger_8cpp.html#a7e2d8ef8f0724f23ce84b1e7d0c171d9">sd_logger.cpp</a></li>
-<li>SD_MISO&#160;:&#160;<a class="el" href="sd__logger_8cpp.html#afb087f7305dc744753834627d3f495d7">sd_logger.cpp</a></li>
-<li>SD_MOSI&#160;:&#160;<a class="el" href="sd__logger_8cpp.html#a48f4a08c693ab4e9bf6f412a1b385ea8">sd_logger.cpp</a></li>
-<li>SD_SCK&#160;:&#160;<a class="el" href="sd__logger_8cpp.html#a7d4515322b1ae2d7fdf14b3ccd78a31b">sd_logger.cpp</a></li>
+
+<p>Interface for handling physical buttons using a hardware timer.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+</div>
+<p><a href="inputs_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ada20c3c87c3817e7276e70d280db0828" id="r_ada20c3c87c3817e7276e70d280db0828"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada20c3c87c3817e7276e70d280db0828">inputs_init</a> (volatile uint32_t *sd_enable_ptr)</td></tr>
+<tr class="memdesc:ada20c3c87c3817e7276e70d280db0828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the hardware timer and button GPIOs.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for handling physical buttons using a hardware timer. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ada20c3c87c3817e7276e70d280db0828" name="ada20c3c87c3817e7276e70d280db0828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada20c3c87c3817e7276e70d280db0828">&#9670;&#160;</a></span>inputs_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void inputs_init </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint32_t *</td>          <td class="paramname"><span class="paramname"><em>sd_enable_ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the hardware timer and button GPIOs. </p>
+<ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sd_enable_ptr</td><td>Pointer to the global SD_ENABLE flag. The ISR will toggle this value when the SD button is pressed. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
 </ul>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a href="inputs_8h.html">inputs.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

@@ -1,6 +1,8 @@
 var files_dup =
 [
     [ "co2safety.ino", "co2safety_8ino.html", "co2safety_8ino" ],
+    [ "inputs.cpp", "inputs_8cpp.html", "inputs_8cpp" ],
+    [ "inputs.h", "inputs_8h.html", "inputs_8h" ],
     [ "motor.cpp", "motor_8cpp.html", "motor_8cpp" ],
     [ "motor.h", "motor_8h.html", "motor_8h" ],
     [ "scd41.cpp", "scd41_8cpp.html", "scd41_8cpp" ],

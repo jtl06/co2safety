@@ -1,9 +1,8 @@
 var co2safety_8ino =
 [
+    [ "BAUD_RATE", "co2safety_8ino.html#ad4455691936f92fdd6c37566fc58ba1f", null ],
     [ "I2C_SCL", "co2safety_8ino.html#a212ca328a6409c98f8c3dfbbe1ba561d", null ],
     [ "I2C_SDA", "co2safety_8ino.html#a18aefd12ad84d4c33dc97923cb821e47", null ],
-    [ "NEXT_BUTTON_PIN", "co2safety_8ino.html#aa446ef1837b99fa1d9ae076c7f477c54", null ],
-    [ "SD_BUTTON_PIN", "co2safety_8ino.html#a93510422c658d1276b632d3303ee863d", null ],
     [ "loop", "co2safety_8ino.html#afe461d27b9c48d5921c00d521181f12f", null ],
     [ "next_button_task", "co2safety_8ino.html#a9db9b30de449432469465c4ea9315d12", null ],
     [ "SCD41_init", "co2safety_8ino.html#a4ebab26cc15a6789265f1375940c9564", null ],

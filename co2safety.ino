@@ -9,6 +9,7 @@
 #include <Wire.h>
 #include "scd41.h"
 #include "sd_logger.h"
+#include "inputs.h"
 #include "screen.h"
 #include "motor.h"
 #include <stdint.h>
@@ -17,8 +18,8 @@
 #define I2C_SDA 4
 #define I2C_SCL 5
 
-#define NEXT_BUTTON_PIN 35
-#define SD_BUTTON_PIN 37
+// --------- Other Macros ----------
+#define BAUD_RATE 115200
 
 // Forward declarations from SCD41 driver
 bool SCD41_init(void);
@@ -35,11 +36,14 @@ volatile uint32_t SD_ENABLE = 1;
  * Then creates the FreeRTOS tasks.
  */
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(BAUD_RATE);
   screen_init(&SD_ENABLE);
   motor_init();
+  inputs_init(&SD_ENABLE);
+
   pinMode(NEXT_BUTTON_PIN, INPUT_PULLUP);
   pinMode(SD_BUTTON_PIN, INPUT_PULLUP);
+  
   while (!Serial) {
     delay(10);
   }
@@ -64,9 +68,7 @@ void setup() {
   //
   xTaskCreatePinnedToCore(sensor_task, "SensorTask", 4096, NULL, 2, NULL, 0);
   // UI + buttons + motor on core 1
-  xTaskCreatePinnedToCore   (screen_task,      "ScreenTask",      4096, NULL, 1, NULL, 1);
-  xTaskCreatePinnedToCore(next_button_task, "NextButtonTask",  4096, NULL, 1, NULL, 1);
-  xTaskCreatePinnedToCore(sd_button_task,   "SDButtonTask",    4096, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(screen_task,      "ScreenTask",      4096, NULL, 1, NULL, 1);  
   xTaskCreatePinnedToCore(motor_task,       "MotorTask",       4096, NULL, 1, NULL, 1);
 }
 

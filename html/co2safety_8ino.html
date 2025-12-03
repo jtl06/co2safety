@@ -98,6 +98,7 @@ $(function(){initNavTree('co2safety_8ino.html','',''); });
 <code>#include &lt;Wire.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="scd41_8h_source.html">scd41.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sd__logger_8h_source.html">sd_logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="inputs_8h_source.html">inputs.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="screen_8h_source.html">screen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="motor_8h_source.html">motor.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
@@ -106,8 +107,7 @@ $(function(){initNavTree('co2safety_8ino.html','',''); });
 Macros</h2></td></tr>
 <tr class="memitem:a18aefd12ad84d4c33dc97923cb821e47" id="r_a18aefd12ad84d4c33dc97923cb821e47"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18aefd12ad84d4c33dc97923cb821e47">I2C_SDA</a>&#160;&#160;&#160;4</td></tr>
 <tr class="memitem:a212ca328a6409c98f8c3dfbbe1ba561d" id="r_a212ca328a6409c98f8c3dfbbe1ba561d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a212ca328a6409c98f8c3dfbbe1ba561d">I2C_SCL</a>&#160;&#160;&#160;5</td></tr>
-<tr class="memitem:aa446ef1837b99fa1d9ae076c7f477c54" id="r_aa446ef1837b99fa1d9ae076c7f477c54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa446ef1837b99fa1d9ae076c7f477c54">NEXT_BUTTON_PIN</a>&#160;&#160;&#160;35</td></tr>
-<tr class="memitem:a93510422c658d1276b632d3303ee863d" id="r_a93510422c658d1276b632d3303ee863d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93510422c658d1276b632d3303ee863d">SD_BUTTON_PIN</a>&#160;&#160;&#160;37</td></tr>
+<tr class="memitem:ad4455691936f92fdd6c37566fc58ba1f" id="r_ad4455691936f92fdd6c37566fc58ba1f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4455691936f92fdd6c37566fc58ba1f">BAUD_RATE</a>&#160;&#160;&#160;115200</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -138,6 +138,20 @@ Variables</h2></td></tr>
 </ul>
 <p>This file initializes the system and spawns FreeRTOS tasks for reading sensors, updating the screen, handling buttons, and controlling the motor. </p>
 </div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="ad4455691936f92fdd6c37566fc58ba1f" name="ad4455691936f92fdd6c37566fc58ba1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4455691936f92fdd6c37566fc58ba1f">&#9670;&#160;</a></span>BAUD_RATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUD_RATE&#160;&#160;&#160;115200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a212ca328a6409c98f8c3dfbbe1ba561d" name="a212ca328a6409c98f8c3dfbbe1ba561d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a212ca328a6409c98f8c3dfbbe1ba561d">&#9670;&#160;</a></span>I2C_SCL</h2>
 
@@ -160,34 +174,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define I2C_SDA&#160;&#160;&#160;4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa446ef1837b99fa1d9ae076c7f477c54" name="aa446ef1837b99fa1d9ae076c7f477c54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa446ef1837b99fa1d9ae076c7f477c54">&#9670;&#160;</a></span>NEXT_BUTTON_PIN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NEXT_BUTTON_PIN&#160;&#160;&#160;35</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a93510422c658d1276b632d3303ee863d" name="a93510422c658d1276b632d3303ee863d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93510422c658d1276b632d3303ee863d">&#9670;&#160;</a></span>SD_BUTTON_PIN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SD_BUTTON_PIN&#160;&#160;&#160;37</td>
         </tr>
       </table>
 </div><div class="memdoc">

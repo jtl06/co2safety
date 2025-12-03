@@ -1,11 +1,4 @@
 var searchData=
 [
-  ['cmd_5fget_5fdata_5fready_5fstatus_0',['CMD_GET_DATA_READY_STATUS',['../scd41_8cpp.html#ab27f867aa90019401665eab2c5a25615',1,'scd41.cpp']]],
-  ['cmd_5fread_5fmeasurement_1',['CMD_READ_MEASUREMENT',['../scd41_8cpp.html#a407000be8cd567daeb6a874253516ad9',1,'scd41.cpp']]],
-  ['cmd_5fstart_5fperiodic_5fmeas_2',['CMD_START_PERIODIC_MEAS',['../scd41_8cpp.html#abd2cd0041c0deb6f3f8f6a685b7e3214',1,'scd41.cpp']]],
-  ['cmd_5fstop_5fperiodic_5fmeas_3',['CMD_STOP_PERIODIC_MEAS',['../scd41_8cpp.html#a515ea6f1cf60dd9317b51b06fdd1a3bf',1,'scd41.cpp']]],
-  ['co2_5fppm_4',['co2_ppm',['../structscd41__reading__t.html#a23aafba39667caf8ae1cf1ba4903da18',1,'scd41_reading_t']]],
-  ['co2safety_2eino_5',['co2safety.ino',['../co2safety_8ino.html',1,'']]],
-  ['crc8_5finit_6',['CRC8_INIT',['../scd41_8cpp.html#a1a748fe27fb199e3a200974254f13c7d',1,'scd41.cpp']]],
-  ['crc8_5fpolynomial_7',['CRC8_POLYNOMIAL',['../scd41_8cpp.html#a26d68e90012b14c430d91affea2c1d32',1,'scd41.cpp']]]
+  ['baud_5frate_0',['BAUD_RATE',['../co2safety_8ino.html#ad4455691936f92fdd6c37566fc58ba1f',1,'co2safety.ino']]]
 ];

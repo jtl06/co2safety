@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['i2c_5fscl_0',['I2C_SCL',['../co2safety_8ino.html#a212ca328a6409c98f8c3dfbbe1ba561d',1,'co2safety.ino']]],
-  ['i2c_5fsda_1',['I2C_SDA',['../co2safety_8ino.html#a18aefd12ad84d4c33dc97923cb821e47',1,'co2safety.ino']]]
+  ['humidity_5frh_0',['humidity_rh',['../structscd41__reading__t.html#ad2da5adb3c2851bee9dee38e55e910bf',1,'scd41_reading_t']]]
 ];
