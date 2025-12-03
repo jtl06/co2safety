@@ -105,8 +105,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:a151cccf0120a24d251b5ce5d878abb67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the motor GPIO pins.  <br /></td></tr>
 <tr class="memitem:a31174f7d33995e1b9967e90505f3a4e7" id="r_a31174f7d33995e1b9967e90505f3a4e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31174f7d33995e1b9967e90505f3a4e7">motor_step</a> (bool power)</td></tr>
 <tr class="memdesc:a31174f7d33995e1b9967e90505f3a4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a single step of the motor or turns it off.  <br /></td></tr>
-<tr class="memitem:a7c5cd2df552aab8cd531cb8c196a688b" id="r_a7c5cd2df552aab8cd531cb8c196a688b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c5cd2df552aab8cd531cb8c196a688b">motor_set_reading</a> (const <a class="el" href="structscd41__reading__t.html">scd41_reading_t</a> *reading)</td></tr>
-<tr class="memdesc:a7c5cd2df552aab8cd531cb8c196a688b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the motor logic with the latest sensor reading.  <br /></td></tr>
 <tr class="memitem:aa7dfb03a917557674fb0a1149cb939bd" id="r_aa7dfb03a917557674fb0a1149cb939bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7dfb03a917557674fb0a1149cb939bd">motor_task</a> (void *pvParameters)</td></tr>
 <tr class="memdesc:aa7dfb03a917557674fb0a1149cb939bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">FreeRTOS task that controls the motor.  <br /></td></tr>
 </table>
@@ -130,35 +128,6 @@ Functions</h2></td></tr>
 
 <p>Initializes the motor GPIO pins. </p>
 <p>Initializes the motor GPIO pins. </p>
-
-</div>
-</div>
-<a id="a7c5cd2df552aab8cd531cb8c196a688b" name="a7c5cd2df552aab8cd531cb8c196a688b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c5cd2df552aab8cd531cb8c196a688b">&#9670;&#160;</a></span>motor_set_reading()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void motor_set_reading </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structscd41__reading__t.html">scd41_reading_t</a> *</td>          <td class="paramname"><span class="paramname"><em>reading</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Updates the motor logic with the latest sensor reading. </p>
-<ul>
-<li></li>
-</ul>
-<p>Thread-safe update of the reading used by the motor task. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">reading</td><td>Pointer to the latest <a class="el" href="structscd41__reading__t.html" title="Container for a single sensor measurement.">scd41_reading_t</a>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Updates the motor logic with the latest sensor reading. </p>
 
 </div>
 </div>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sd_5fenable_0',['SD_ENABLE',['../co2safety_8ino.html#ae6bf0ba49d5545b16f090acbe456d1a8',1,'co2safety.ino']]],
-  ['sd_5fvar_1',['SD_var',['../screen_8cpp.html#ac624adaec7ca6a66373ac23ecc7de761',1,'screen.cpp']]]
+  ['motorqueue_0',['motorQueue',['../co2safety_8ino.html#abbbf5652a213064af193b6a3bb8c8672',1,'motorQueue:&#160;co2safety.ino'],['../motor_8cpp.html#abbbf5652a213064af193b6a3bb8c8672',1,'motorQueue:&#160;co2safety.ino']]]
 ];

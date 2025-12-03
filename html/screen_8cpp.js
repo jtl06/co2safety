@@ -10,5 +10,6 @@ var screen_8cpp =
     [ "screen_show_temperature", "screen_8cpp.html#a004af96795ae3921cbeaccc56648e7cb", null ],
     [ "screen_show_waiting", "screen_8cpp.html#a0a54db6b1d6ae98420c3df62a10db26d", null ],
     [ "screen_task", "screen_8cpp.html#ac11caa69861843d625e8411350b52361", null ],
+    [ "screenQueue", "screen_8cpp.html#af9248c86f6bd1dc4a55caee7c0d004ae", null ],
     [ "SD_var", "screen_8cpp.html#ac624adaec7ca6a66373ac23ecc7de761", null ]
 ];

@@ -108,6 +108,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a7c5cd2df552aab8cd531cb8c196a688b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe setter for the sensor reading.  <br /></td></tr>
 <tr class="memitem:aa7dfb03a917557674fb0a1149cb939bd" id="r_aa7dfb03a917557674fb0a1149cb939bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7dfb03a917557674fb0a1149cb939bd">motor_task</a> (void *pvParameters)</td></tr>
 <tr class="memdesc:aa7dfb03a917557674fb0a1149cb939bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task running at 128hz to step the motor if CO2 &gt; threshold.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:abbbf5652a213064af193b6a3bb8c8672" id="r_abbbf5652a213064af193b6a3bb8c8672"><td class="memItemLeft" align="right" valign="top">QueueHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbbf5652a213064af193b6a3bb8c8672">motorQueue</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of stepper motor control. </p>
@@ -148,7 +152,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Thread-safe setter for the sensor reading. </p>
-<p>Updates the motor logic with the latest sensor reading. </p>
 
 </div>
 </div>
@@ -189,6 +192,29 @@ Functions</h2></td></tr>
 
 <p>Task running at 128hz to step the motor if CO2 &gt; threshold. </p>
 <p>FreeRTOS task that controls the motor. </p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="abbbf5652a213064af193b6a3bb8c8672" name="abbbf5652a213064af193b6a3bb8c8672"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbbf5652a213064af193b6a3bb8c8672">&#9670;&#160;</a></span>motorQueue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QueueHandle_t motorQueue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
