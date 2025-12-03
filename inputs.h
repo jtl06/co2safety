@@ -4,7 +4,6 @@
  */
 
 #pragma once
-
 #include <Arduino.h>
 
 /**
@@ -12,4 +11,4 @@
  * * @param sd_enable_ptr Pointer to the global SD_ENABLE flag.
  * The ISR will toggle this value when the SD button is pressed.
  */
-void inputs_init(volatile uint32_t* sd_enable_ptr);
+void inputs_init(volatile bool* sd_enable_ptr);

@@ -20,12 +20,13 @@ static bool haveReading = false;
 static portMUX_TYPE readingMux = portMUX_INITIALIZER_UNLOCKED;
 
 /** @brief Pointer to external SD enable flag. */
-bool* SD_var;
+volatile bool* SD_var;
 
 /**
  * @brief Initialize screen and backlight.
  */
-void screen_init(uint32_t* sd_enable) {
+void screen_init(volatile bool* sd_enable) {
+ 
   SD_var = sd_enable;
   Wire.begin(4,5); // SDA, SCL
   lcd.init();

@@ -26,7 +26,7 @@ bool SCD41_init(void);
 bool SCD41_read(scd41_reading_t *out);
 
 /** @brief Global flag to enable/disable SD card logging. */
-volatile uint32_t SD_ENABLE = 1;
+volatile bool SD_ENABLE = 1;
 
 // --------- Arduino code ----------
 
@@ -40,9 +40,6 @@ void setup() {
   screen_init(&SD_ENABLE);
   motor_init();
   inputs_init(&SD_ENABLE);
-
-  pinMode(NEXT_BUTTON_PIN, INPUT_PULLUP);
-  pinMode(SD_BUTTON_PIN, INPUT_PULLUP);
   
   while (!Serial) {
     delay(10);

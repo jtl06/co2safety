@@ -12,7 +12,7 @@
  * @brief Initializes the LCD screen and I2C wire.
  * * @param sd_enable Pointer to the global SD enable variable to display status.
  */
-void screen_init(bool* sd_enable);
+void screen_init(volatile bool* sd_enable);
 
 /** @brief Displays CO2 reading on the screen. */
 void screen_show_co2(float reading);

@@ -27,7 +27,7 @@ static const uint8_t motorSeq[8][4] = {
 static const uint32_t threshold = 1000;
 
 static scd41_reading_t latestReading = {0};
-static volatilebool haveReading = false;
+static volatile bool haveReading = false;
 
 /** @brief Mutex for protecting latestReading. */
 static portMUX_TYPE readingMux = portMUX_INITIALIZER_UNLOCKED;

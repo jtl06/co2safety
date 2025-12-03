@@ -11,8 +11,8 @@
 #define SD_BUTTON_PIN   37
 
 // --- State Variables ---
-static volatile uint32_t* _sd_enable_ptr = nullptr;
-static hw_timer_t *btnTimer = nullptr;
+static volatile bool* _sd_enable_ptr = nullptr;
+static hw_timer_t* btnTimer = nullptr;
 
 /**
  * @brief Timer Interrupt Service Routine (ISR).
@@ -57,7 +57,7 @@ void IRAM_ATTR onButtonTimer() {
   }
 }
 
-void inputs_init(volatile uint32_t* sd_enable_ptr) {
+void inputs_init(volatile bool* sd_enable_ptr) {
   _sd_enable_ptr = sd_enable_ptr;
 
   // Configure Pins
@@ -65,15 +65,12 @@ void inputs_init(volatile uint32_t* sd_enable_ptr) {
   pinMode(SD_BUTTON_PIN, INPUT_PULLUP);
 
   // Configure hardware timer
-  // Use Timer 0, divider 80 (80MHz/80 = 1MHz = 1us per tick)
-  btnTimer = timerBegin(0, 80, true);
+  // 1mhz
+  btnTimer = timerBegin(1000000);
   
   // Attach ISR
-  timerAttachInterrupt(btnTimer, &onButtonTimer, true);
+  timerAttachInterrupt(btnTimer, &onButtonTimer);
   
   // Set alarm for 10ms (10000 ticks * 1us)
-  timerAlarmWrite(btnTimer, 10000, true);
-  
-  // Start timer
-  timerAlarmEnable(btnTimer);
+  timerAlarm(btnTimer, 10000, true, 0);
 }
