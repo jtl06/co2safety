@@ -121,10 +121,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino main loop.  <br /></td></tr>
 <tr class="memitem:adc13c768c3882c534ba57bad636776ce" id="r_adc13c768c3882c534ba57bad636776ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc13c768c3882c534ba57bad636776ce">sensor_task</a> (void *pvParameters)</td></tr>
 <tr class="memdesc:adc13c768c3882c534ba57bad636776ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task to read the SCD41 sensor periodically.  <br /></td></tr>
-<tr class="memitem:a9db9b30de449432469465c4ea9315d12" id="r_a9db9b30de449432469465c4ea9315d12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9db9b30de449432469465c4ea9315d12">next_button_task</a> (void *pvParameters)</td></tr>
-<tr class="memdesc:a9db9b30de449432469465c4ea9315d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task to handle the 'Next Page' button.  <br /></td></tr>
-<tr class="memitem:af75a3f0e294ac7a28bbdef5dd32f463f" id="r_af75a3f0e294ac7a28bbdef5dd32f463f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af75a3f0e294ac7a28bbdef5dd32f463f">sd_button_task</a> (void *pvParameters)</td></tr>
-<tr class="memdesc:af75a3f0e294ac7a28bbdef5dd32f463f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task to handle the 'SD Toggle' button.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -201,34 +197,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9db9b30de449432469465c4ea9315d12" name="a9db9b30de449432469465c4ea9315d12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9db9b30de449432469465c4ea9315d12">&#9670;&#160;</a></span>next_button_task()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void next_button_task </td>
-          <td>(</td>
-          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameters</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Task to handle the 'Next Page' button. </p>
-<ul>
-<li><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pvParameters</td><td>Unused. </td></tr>
-  </table>
-  </dd>
-</dl>
-</li>
-</ul>
-
-</div>
-</div>
 <a id="a4ebab26cc15a6789265f1375940c9564" name="a4ebab26cc15a6789265f1375940c9564"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ebab26cc15a6789265f1375940c9564">&#9670;&#160;</a></span>SCD41_init()</h2>
 
@@ -264,34 +232,6 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read measurement data (CO2, Temp, RH) if available. </p>
-
-</div>
-</div>
-<a id="af75a3f0e294ac7a28bbdef5dd32f463f" name="af75a3f0e294ac7a28bbdef5dd32f463f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af75a3f0e294ac7a28bbdef5dd32f463f">&#9670;&#160;</a></span>sd_button_task()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void sd_button_task </td>
-          <td>(</td>
-          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameters</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Task to handle the 'SD Toggle' button. </p>
-<ul>
-<li><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pvParameters</td><td>Unused. </td></tr>
-  </table>
-  </dd>
-</dl>
-</li>
-</ul>
 
 </div>
 </div>

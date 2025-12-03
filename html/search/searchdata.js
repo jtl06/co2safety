@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "bchilmnost",
   1: "s",
   2: "cims",
-  3: "ilmnos",
+  3: "ilmos",
   4: "chst",
   5: "bcins"
 };
