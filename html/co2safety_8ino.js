@@ -8,5 +8,5 @@ var co2safety_8ino =
     [ "SCD41_read", "co2safety_8ino.html#acfc267f5b9d040951e040cfb5ae3ee1b", null ],
     [ "sensor_task", "co2safety_8ino.html#adc13c768c3882c534ba57bad636776ce", null ],
     [ "setup", "co2safety_8ino.html#a4fc01d736fe50cf5b977f755b675f11d", null ],
-    [ "SD_ENABLE", "co2safety_8ino.html#a589feb91df20b4bd1d0c634c93d5a333", null ]
+    [ "SD_ENABLE", "co2safety_8ino.html#ae6bf0ba49d5545b16f090acbe456d1a8", null ]
 ];

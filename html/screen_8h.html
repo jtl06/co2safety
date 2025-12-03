@@ -101,8 +101,8 @@ $(function(){initNavTree('screen_8h.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a32412d579b165f4e495c83eb398bc842" id="r_a32412d579b165f4e495c83eb398bc842"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32412d579b165f4e495c83eb398bc842">screen_init</a> (bool *sd_enable)</td></tr>
-<tr class="memdesc:a32412d579b165f4e495c83eb398bc842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the LCD screen and I2C wire.  <br /></td></tr>
+<tr class="memitem:a07c49d666c1f18c418d7b06f5a3ea0aa" id="r_a07c49d666c1f18c418d7b06f5a3ea0aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07c49d666c1f18c418d7b06f5a3ea0aa">screen_init</a> (volatile bool *sd_enable)</td></tr>
+<tr class="memdesc:a07c49d666c1f18c418d7b06f5a3ea0aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the LCD screen and I2C wire.  <br /></td></tr>
 <tr class="memitem:ac71e4113d70652558c80aaa67390125b" id="r_ac71e4113d70652558c80aaa67390125b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac71e4113d70652558c80aaa67390125b">screen_show_co2</a> (float reading)</td></tr>
 <tr class="memdesc:ac71e4113d70652558c80aaa67390125b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays CO2 reading on the screen.  <br /></td></tr>
 <tr class="memitem:aeac68b2ad703afef293c95d0360785fd" id="r_aeac68b2ad703afef293c95d0360785fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeac68b2ad703afef293c95d0360785fd">screen_show_humidity</a> (float reading)</td></tr>
@@ -121,8 +121,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for LCD screen management using I2C. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a32412d579b165f4e495c83eb398bc842" name="a32412d579b165f4e495c83eb398bc842"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32412d579b165f4e495c83eb398bc842">&#9670;&#160;</a></span>screen_init()</h2>
+<a id="a07c49d666c1f18c418d7b06f5a3ea0aa" name="a07c49d666c1f18c418d7b06f5a3ea0aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07c49d666c1f18c418d7b06f5a3ea0aa">&#9670;&#160;</a></span>screen_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,7 +130,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void screen_init </td>
           <td>(</td>
-          <td class="paramtype">bool *</td>          <td class="paramname"><span class="paramname"><em>sd_enable</em></span></td><td>)</td>
+          <td class="paramtype">volatile bool *</td>          <td class="paramname"><span class="paramname"><em>sd_enable</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -140,11 +140,11 @@ Functions</h2></td></tr>
 <ul>
 <li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sd_enable</td><td>Pointer to the global SD enable variable to display status. </td></tr>
+    <tr><td class="paramname">sd_enable</td><td>Pointer to the global SD enable variable to display status.</td></tr>
   </table>
   </dd>
 </dl>
-</li>
+Initializes the LCD screen and I2C wire. </li>
 </ul>
 
 </div>

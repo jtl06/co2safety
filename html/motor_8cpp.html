@@ -107,7 +107,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a7c5cd2df552aab8cd531cb8c196a688b" id="r_a7c5cd2df552aab8cd531cb8c196a688b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c5cd2df552aab8cd531cb8c196a688b">motor_set_reading</a> (const <a class="el" href="structscd41__reading__t.html">scd41_reading_t</a> *reading)</td></tr>
 <tr class="memdesc:a7c5cd2df552aab8cd531cb8c196a688b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe setter for the sensor reading.  <br /></td></tr>
 <tr class="memitem:aa7dfb03a917557674fb0a1149cb939bd" id="r_aa7dfb03a917557674fb0a1149cb939bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7dfb03a917557674fb0a1149cb939bd">motor_task</a> (void *pvParameters)</td></tr>
-<tr class="memdesc:aa7dfb03a917557674fb0a1149cb939bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task running at 1kHz to step the motor if CO2 &gt; threshold.  <br /></td></tr>
+<tr class="memdesc:aa7dfb03a917557674fb0a1149cb939bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task running at 128hz to step the motor if CO2 &gt; threshold.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of stepper motor control. </p>
@@ -187,7 +187,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Task running at 1kHz to step the motor if CO2 &gt; threshold. </p>
+<p>Task running at 128hz to step the motor if CO2 &gt; threshold. </p>
 <p>FreeRTOS task that controls the motor. </p>
 
 </div>

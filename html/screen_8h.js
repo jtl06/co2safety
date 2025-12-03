@@ -1,6 +1,6 @@
 var screen_8h =
 [
-    [ "screen_init", "screen_8h.html#a32412d579b165f4e495c83eb398bc842", null ],
+    [ "screen_init", "screen_8h.html#a07c49d666c1f18c418d7b06f5a3ea0aa", null ],
     [ "screen_next_page", "screen_8h.html#a87bbfeba17322ef0fdc0a543667ff6b6", null ],
     [ "screen_set_reading", "screen_8h.html#afa5e51f64af4ec9432c85e72815474a8", null ],
     [ "screen_show_co2", "screen_8h.html#ac71e4113d70652558c80aaa67390125b", null ],
