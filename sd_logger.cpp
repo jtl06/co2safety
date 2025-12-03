@@ -1,5 +1,5 @@
 // sd_logger.cpp
-#include "../inc/sd_logger.h"
+#include "sd_logger.h"
 
 #include <SPI.h>
 #include <SD.h>
