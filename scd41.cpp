@@ -1,21 +1,36 @@
+/**
+ * @file scd41.cpp
+ * @brief Implementation of the SCD41 I2C driver.
+ */
+
 #include <Arduino.h>
 #include <Wire.h>
 #include "./scd41.h"
 
 //address
+/** @brief I2C address of the SCD41. */
 #define SCD41_I2C_ADDR 0x62
 
 //commands
+/** @brief Command to start periodic measurements. */
 #define CMD_START_PERIODIC_MEAS   0x21B1
+/** @brief Command to read measurement data. */
 #define CMD_READ_MEASUREMENT      0xEC05
+/** @brief Command to stop periodic measurements. */
 #define CMD_STOP_PERIODIC_MEAS    0x3F86
+/** @brief Command to check data ready status. */
 #define CMD_GET_DATA_READY_STATUS 0xE4B8
 
 //checksum
 #define CRC8_POLYNOMIAL 0x31
 #define CRC8_INIT       0xFF
 
-//crc 8 calculation
+/**
+ * @brief Calculates the CRC8 checksum for data validation.
+ * * @param data Pointer to the data buffer.
+ * @param count Number of bytes to calculate CRC for.
+ * @return uint8_t The calculated CRC8 value.
+ */
 static uint8_t scd41_crc8(const uint8_t *data, uint16_t count) {
   uint8_t crc = CRC8_INIT;
   for (uint16_t i = 0; i < count; i++) {
@@ -28,6 +43,11 @@ static uint8_t scd41_crc8(const uint8_t *data, uint16_t count) {
   return crc;
 }
 
+/**
+ * @brief Sends a 16-bit command to the SCD41 over I2C.
+ * * @param cmd The 16-bit command code.
+ * @return true on success, false on failure.
+ */
 static bool scd41_send_cmd(uint16_t cmd) {
   Wire.beginTransmission(SCD41_I2C_ADDR);
   Wire.write((uint8_t)(cmd >> 8));
@@ -35,6 +55,15 @@ static bool scd41_send_cmd(uint16_t cmd) {
   return (Wire.endTransmission() == 0);
 }
 
+/**
+ * @brief Reads words from the sensor after sending a command.
+ * * @param cmd The command to send before reading.
+ * @param words Buffer to store the read words (uint16_t).
+ * @param n_words Number of words to read.
+ * @param exec_time_ms Wait time after command before reading.
+ * @return true If data was read and CRCs matched.
+ * @return false If I2C failed or CRC mismatch.
+ */
 static bool scd41_read_words(uint16_t cmd, uint16_t *words, uint8_t n_words, uint16_t exec_time_ms) {
   if (!scd41_send_cmd(cmd)) return false;
   delay(exec_time_ms); // datasheet: read-type commands need ~1 ms
@@ -54,6 +83,10 @@ static bool scd41_read_words(uint16_t cmd, uint16_t *words, uint8_t n_words, uin
   return true;
 }
 
+/**
+ * @brief Checks if the sensor has data ready to read.
+ * @return true If data is ready.
+ */
 static bool scd41_data_ready(void) {
   uint16_t w;
   if (!scd41_read_words(CMD_GET_DATA_READY_STATUS, &w, 1, 1)) return false;
@@ -61,6 +94,9 @@ static bool scd41_data_ready(void) {
   return (w & 0x07FF) != 0;
 }
 
+/**
+ * @brief Initialize the sensor and start periodic measurements.
+ */
 bool SCD41_init(void) {
   // Assume Wire has already been configured (pins, speed, etc).
   delay(50); // power-up max 30 ms, give a little margin
@@ -73,8 +109,9 @@ bool SCD41_init(void) {
   return scd41_send_cmd(CMD_START_PERIODIC_MEAS);
 }
 
-// Read one sample in periodic mode.
-// If data isn't ready yet, returns false and leaves outputs unchanged.
+/**
+ * @brief Read measurement data (CO2, Temp, RH) if available.
+ */
 bool SCD41_read(scd41_reading_t *out) {
   if (!out) return false;
 

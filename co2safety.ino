@@ -1,9 +1,17 @@
+/**
+ * @file co2safety.ino
+ * @brief Main firmware entry point for the CO2 Safety Monitor.
+ * * @details This file initializes the system and spawns FreeRTOS tasks for 
+ * reading sensors, updating the screen, handling buttons, and controlling the motor.
+ */
+
 #include <Arduino.h>
 #include <Wire.h>
 #include "scd41.h"
 #include "sd_logger.h"
 #include "screen.h"
 #include "motor.h"
+#include <stdint.h>
 
 // --------- Pinout (ESP32-S3) ----------
 #define I2C_SDA 4
@@ -16,15 +24,20 @@
 bool SCD41_init(void);
 bool SCD41_read(scd41_reading_t *out);
 
-bool SD_ENABLE = true;
+/** @brief Global flag to enable/disable SD card logging. */
+volatile uint32_t SD_ENABLE = 1;
 
 // --------- Arduino code ----------
 
+/**
+ * @brief Arduino setup function.
+ * * @details Initializes Serial, Screen, Motor, Buttons, I2C, SCD41, and SD Card.
+ * Then creates the FreeRTOS tasks.
+ */
 void setup() {
   Serial.begin(115200);
   screen_init(&SD_ENABLE);
   motor_init();
-
   pinMode(NEXT_BUTTON_PIN, INPUT_PULLUP);
   pinMode(SD_BUTTON_PIN, INPUT_PULLUP);
   while (!Serial) {
@@ -36,7 +49,6 @@ void setup() {
 
   // I2C init
   Wire.begin(I2C_SDA, I2C_SCL, 100000);
-
   if (!SCD41_init()) {
     Serial.println("ERROR: Failed to initialize SCD41!");
   } else {
@@ -49,20 +61,28 @@ void setup() {
   } else {
     Serial.println("SDLOG: logging to /scd41_log.csv");
   }
-
-  xTaskCreate(sensor_task, "SensorTask", 4096, NULL, 1, NULL);
-  xTaskCreate(screen_task, "ScreenTask", 4096, NULL, 1, NULL);
-  xTaskCreate(next_button_task, "NextButtonTask", 4096, NULL, 1, NULL);
-  xTaskCreate(sd_button_task, "SDButtonTask", 4096, NULL, 1, NULL);
-  xTaskCreate(motor_task, "MotorTask", 4096, NULL, 1, NULL);
+  //
+  xTaskCreatePinnedToCore(sensor_task, "SensorTask", 4096, NULL, 2, NULL, 0);
+  // UI + buttons + motor on core 1
+  xTaskCreatePinnedToCore   (screen_task,      "ScreenTask",      4096, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(next_button_task, "NextButtonTask",  4096, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(sd_button_task,   "SDButtonTask",    4096, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(motor_task,       "MotorTask",       4096, NULL, 1, NULL, 1);
 }
 
+/**
+ * @brief Arduino main loop.
+ * @details Not used because FreeRTOS tasks are handling execution.
+ */
 void loop() {}
 
+/**
+ * @brief Task to read the SCD41 sensor periodically.
+ * * @param pvParameters Unused.
+ */
 void sensor_task(void *pvParameters) {
   scd41_reading_t reading;
   TickType_t last_wake_time = xTaskGetTickCount();
-
   while (true) {
     last_wake_time = xTaskGetTickCount();
     if (SCD41_read(&reading)) {
@@ -94,16 +114,20 @@ void sensor_task(void *pvParameters) {
   }
 }
 
+/**
+ * @brief Task to handle the 'Next Page' button.
+ * * @param pvParameters Unused.
+ */
 void next_button_task(void *pvParameters) {
   const TickType_t debounce_delay = pdMS_TO_TICKS(10);
   const TickType_t check_interval = pdMS_TO_TICKS(8); //~128hz
   TickType_t last_wake_time = xTaskGetTickCount();
-  bool last_button_state = LOW;  // Assuming pull-up resistor
+  bool last_button_state = LOW;
+  // Assuming pull-up resistor
 
   while (true) {
     last_wake_time = xTaskGetTickCount();
     bool current_button_state = digitalRead(NEXT_BUTTON_PIN);
-
     if (current_button_state != last_button_state) {
       vTaskDelay(debounce_delay);
       current_button_state = digitalRead(NEXT_BUTTON_PIN);
@@ -119,6 +143,10 @@ void next_button_task(void *pvParameters) {
   }
 }
 
+/**
+ * @brief Task to handle the 'SD Toggle' button.
+ * * @param pvParameters Unused.
+ */
 void sd_button_task(void *pvParameters) {
   const TickType_t debounce_delay = pdMS_TO_TICKS(50);
   const TickType_t check_interval = pdMS_TO_TICKS(10);
@@ -135,7 +163,9 @@ void sd_button_task(void *pvParameters) {
       if (current_button_state != last_button_state) {
         last_button_state = current_button_state;
         if (current_button_state == LOW) {  // Button pressed
+          taskENTER_CRITICAL();
           SD_ENABLE = !SD_ENABLE;
+          taskEXIT_CRITICAL();
         }
       }
     }

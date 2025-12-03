@@ -1,18 +1,30 @@
-// sd_logger.cpp
+/**
+ * @file sd_logger.cpp
+ * @brief Implementation of SD card logging functionality.
+ */
+
 #include "sd_logger.h"
 
 #include <SPI.h>
 #include <SD.h>
 
 // --- SD card pins for ESP32-S3 (adjust if needed) ---
+/** @brief Chip Select pin for SD card. */
 #define SD_CS   10
+/** @brief Master Out Slave In pin for SPI. */
 #define SD_MOSI 11
+/** @brief Master In Slave Out pin for SPI. */
 #define SD_MISO 13
+/** @brief Serial Clock pin for SPI. */
 #define SD_SCK  12
 
-// Log file path on the SD card
+/** @brief File path for the CSV log on the SD card. */
 static const char *SDLOG_PATH = "/scd41_log.csv";
 
+/**
+ * @brief Init SPI bus with custom pins and mount SD filesystem.
+ * @return true on success, false on failure.
+ */
 bool SDLOG_init(void) {
   // Init SPI bus with custom pins
   SPI.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
@@ -39,6 +51,10 @@ bool SDLOG_init(void) {
   return true;
 }
 
+/**
+ * @brief Appends data to the log file.
+ * @return true on success, false on failure.
+ */
 bool SDLOG_append(uint32_t timestamp_ms,
                   float co2_ppm,
                   float temperature_c,

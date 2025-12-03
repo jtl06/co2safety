@@ -1,10 +1,17 @@
+/**
+ * @file screen.cpp
+ * @brief Implementation of the LCD screen display logic.
+ */
+
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/portmacro.h"
 #include "screen.h"
 #include <Wire.h>
+#include <stdint.h>
 
+/** @brief LCD object initialization (Addr: 0x27, 16 chars, 2 lines). */
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 static int page = 0;
@@ -12,9 +19,13 @@ static scd41_reading_t latestReading = {0};
 static bool haveReading = false;
 static portMUX_TYPE readingMux = portMUX_INITIALIZER_UNLOCKED;
 
+/** @brief Pointer to external SD enable flag. */
 bool* SD_var;
 
-void screen_init(bool* sd_enable) {
+/**
+ * @brief Initialize screen and backlight.
+ */
+void screen_init(uint32_t* sd_enable) {
   SD_var = sd_enable;
   Wire.begin(4,5); // SDA, SCL
   lcd.init();
@@ -60,6 +71,9 @@ void screen_next_page(void) {
   page = (page + 1) % 3;
 }
 
+/**
+ * @brief Prints the SD logging status on the second line.
+ */
 void screen_sd_line(void) {
   lcd.setCursor(0, 1);
   lcd.print("SD Log: ");
@@ -71,6 +85,9 @@ void screen_sd_line(void) {
   }
 }
 
+/**
+ * @brief Thread-safe update of the reading data.
+ */
 void screen_set_reading(const scd41_reading_t *reading) {
   if (!reading) return;
   portENTER_CRITICAL(&readingMux);
@@ -79,6 +96,9 @@ void screen_set_reading(const scd41_reading_t *reading) {
   portEXIT_CRITICAL(&readingMux);
 }
 
+/**
+ * @brief Task for refreshing the screen at ~2Hz.
+ */
 void screen_task(void *pvParameters) {
   const TickType_t period = pdMS_TO_TICKS(500);  // 2hz
   TickType_t lastWakeTime = xTaskGetTickCount();
