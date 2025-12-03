@@ -70,10 +70,10 @@ void motor_set_reading(const scd41_reading_t *reading) {
 }
 
 /**
- * @brief Task running at 1kHz to step the motor if CO2 > threshold.
+ * @brief Task running at 128hz to step the motor if CO2 > threshold.
  */
 void motor_task(void *pvParameters) {
-  const TickType_t period = pdMS_TO_TICKS(1); //1000hz
+  const TickType_t period = pdMS_TO_TICKS(8); //appx 128hz
   TickType_t lastWakeTime = xTaskGetTickCount();
 
   for (;;) {
