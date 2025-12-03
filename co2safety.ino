@@ -28,6 +28,10 @@ bool SCD41_read(scd41_reading_t *out);
 /** @brief Global flag to enable/disable SD card logging. */
 volatile bool SD_ENABLE = 1;
 
+// Define queue handles
+QueueHandle_t screenQueue;
+QueueHandle_t motorQueue;
+
 // --------- Arduino code ----------
 
 /**
@@ -44,6 +48,11 @@ void setup() {
   while (!Serial) {
     delay(10);
   }
+
+  // Queue init
+  // Queue holds 1 item of type 'scd41_reading_t'
+  screenQueue = xQueueCreate(1, sizeof(scd41_reading_t));
+  motorQueue  = xQueueCreate(1, sizeof(scd41_reading_t));
 
   Serial.println();
   Serial.println("Booting, setting up I2C, SCD41 and SD...");
@@ -94,8 +103,8 @@ void sensor_task(void *pvParameters) {
       // Serial.print(reading.humidity_rh, 1);
       // Serial.println(" %");
 
-      screen_set_reading(&reading);
-      motor_set_reading(&reading);
+      xQueueOverwrite(screenQueue, &reading);
+      xQueueOverwrite(motorQueue, &reading);
       // --- Log to SD card ---
       if(SD_ENABLE){
         if (!SDLOG_append(millis(),

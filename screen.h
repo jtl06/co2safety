@@ -30,12 +30,6 @@ void screen_show_waiting(void);
 void screen_next_page(void);
 
 /**
- * @brief Updates the screen module with the latest sensor data.
- * @param reading Pointer to the reading struct.
- */
-void screen_set_reading(const scd41_reading_t *reading);
-
-/**
  * @brief FreeRTOS task to manage screen updates.
  * @param pvParameters Task parameters (unused).
  */

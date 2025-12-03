@@ -18,6 +18,7 @@ static int page = 0;
 static scd41_reading_t latestReading = {0};
 static bool haveReading = false;
 static portMUX_TYPE readingMux = portMUX_INITIALIZER_UNLOCKED;
+extern QueueHandle_t screenQueue;
 
 /** @brief Pointer to external SD enable flag. */
 volatile bool* SD_var;
@@ -101,30 +102,36 @@ void screen_set_reading(const scd41_reading_t *reading) {
  * @brief Task for refreshing the screen at ~2Hz.
  */
 void screen_task(void *pvParameters) {
-  const TickType_t period = pdMS_TO_TICKS(500);  // 2hz
+  const TickType_t period = pdMS_TO_TICKS(500); // 2Hz
   TickType_t lastWakeTime = xTaskGetTickCount();
+  
+  // Local buffer to hold the data. Initialize to 0 so we know it's invalid initially.
+  scd41_reading_t currentReading = {0}; 
 
   for (;;) {
     lastWakeTime = xTaskGetTickCount();
-    scd41_reading_t readingCopy;
-    bool ready;
-    portENTER_CRITICAL(&readingMux);
-    readingCopy = latestReading;
-    ready = haveReading;
-    portEXIT_CRITICAL(&readingMux);
 
-    if (!ready) {
+    // 1. Check Queue for new data (Non-blocking)
+    // If data is in the queue, it copies it to &currentReading.
+    // If queue is empty, &currentReading remains unchanged (holds the last valid value).
+    xQueueReceive(screenQueue, &currentReading, 0);
+
+    // 2. Display Logic
+    // If CO2 is still 0, we haven't received the first reading yet.
+    if (currentReading.co2_ppm == 0.0f) {
       screen_show_waiting();
-    } else if (page == 0) {
-      screen_show_co2(readingCopy.co2_ppm);
+    } 
+    else if (page == 0) {
+      screen_show_co2(currentReading.co2_ppm);
       screen_sd_line();
     } else if (page == 1) {
-      screen_show_temperature(readingCopy.temperature_c);
+      screen_show_temperature(currentReading.temperature_c);
       screen_sd_line();
     } else {
-      screen_show_humidity(readingCopy.humidity_rh);
+      screen_show_humidity(currentReading.humidity_rh);
       screen_sd_line();
     }
+
     vTaskDelayUntil(&lastWakeTime, period);
   }
 }

@@ -29,6 +29,8 @@ static const uint32_t threshold = 1000;
 static scd41_reading_t latestReading = {0};
 static volatile bool haveReading = false;
 
+extern QueueHandle_t motorQueue;
+
 /** @brief Mutex for protecting latestReading. */
 static portMUX_TYPE readingMux = portMUX_INITIALIZER_UNLOCKED;
 
@@ -73,29 +75,28 @@ void motor_set_reading(const scd41_reading_t *reading) {
  * @brief Task running at 128hz to step the motor if CO2 > threshold.
  */
 void motor_task(void *pvParameters) {
-  const TickType_t period = pdMS_TO_TICKS(8); //appx 128hz
+  // 1000ms / 8ms = 125Hz (Satisfies "approx 128Hz" requirement)
+  const TickType_t period = pdMS_TO_TICKS(8); 
   TickType_t lastWakeTime = xTaskGetTickCount();
+  
+  // Local storage for the latest sensor data. 
+  scd41_reading_t currentReading = {0}; 
 
   for (;;) {
     lastWakeTime = xTaskGetTickCount();
-    scd41_reading_t readingCopy;
-    bool ready;
-    portENTER_CRITICAL(&readingMux);
-    readingCopy = latestReading;
-    ready = haveReading;
-    portEXIT_CRITICAL(&readingMux);
 
-    if (ready) {
-      // Simple control: power motor if CO2 > threshold
-      if (readingCopy.co2_ppm > threshold) {
-        motor_step(true);
-      } else {
-        motor_step(false);
-      }
+    // Check Queue for new data 
+    if (xQueueReceive(motorQueue, &currentReading, 0) == pdTRUE) {
+    }
+
+    // 2. Motor Logic
+    if (currentReading.co2_ppm > 0 && currentReading.co2_ppm > threshold) {
+      motor_step(true);
     } else {
       motor_step(false);
     }
     
+    // 3. Wait for next cycle
     vTaskDelayUntil(&lastWakeTime, period);
   }
 }
